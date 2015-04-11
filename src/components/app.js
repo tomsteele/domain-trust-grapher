@@ -30,7 +30,7 @@ module.exports = React.createClass({
               </div>
               <div>
                 <p>Upload a csv generated from <a href="https://github.com/Veil-Framework/PowerTools/tree/master/PowerView">PowerView</a>. All data is processed in your browser. You should also check out <a href="https://github.com/sixdub/DomainTrustExplorer">DomainTrustExplorer</a>, created by <a href='https://twitter.com/sixdub'>sixdub</a>, which spawned the idea for this project. For more information on trust exploration and for some sample data, check out this <a href='http://www.harmj0y.net/blog/redteaming/domain-trusts-why-you-should-care/'>post</a> by <a href='https://twitter.com/harmj0y'>harmj0y</a>.</p>
-                <p>Source available at <a href='https://github.com/tomsteele/domain-trust-grapher'>Github</a></p>
+                <p>Source available at <a href='https://github.com/tomsteele/domain-trust-grapher'>Github</a>.</p>
                 <p>To generate the csv run:<br /> <code>Invoke-MapDomainTrusts | Export-CSV -NoTypeInformation trusts.csv</code></p>
               </div>
             </div>
