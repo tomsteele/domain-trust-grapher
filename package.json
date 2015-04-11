@@ -1,0 +1,40 @@
+{
+  "name": "browser-domain-trust-explorer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r dist",
+    "start": "node node_modules/.bin/webpack-dev-server",
+    "build": "NODE_ENV=production node node_modules/.bin/webpack -p && cp src/index.html dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomsteele/browser-domain-trust-explorer.git"
+  },
+  "author": "Tom Steele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomsteele/browser-domain-trust-explorer/issues"
+  },
+  "homepage": "https://github.com/tomsteele/browser-domain-trust-explorer",
+  "dependencies": {
+    "concat-stream": "^1.4.8",
+    "cytoscape": "^2.3.11",
+    "domready": "^1.0.7",
+    "filereader-stream": "^0.2.0",
+    "react": "^0.13.1"
+  },
+  "devDependencies": {
+    "css-loader": "^0.10.1",
+    "file-loader": "^0.8.1",
+    "jsx-loader": "^0.13.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.10.1",
+    "stylus": "^0.50.0",
+    "stylus-loader": "^1.1.0",
+    "webpack": "^1.8.4",
+    "webpack-dev-server": "^1.8.0"
+  }
+}
