@@ -1,15 +1,37 @@
+var Querystring = require('querystring')
 var React = require('react')
 var Concat = require('concat-stream')
 var FileReaderStream = require('filereader-stream')
+var Triplesec = require('triplesec')
 var Elementer = require('../lib/elementer')
 var Graph = require('./graph')
 
 module.exports = React.createClass({
   displayName: 'app',
   getInitialState: function () {
-    return {elements: {}}
+    var cipher = Querystring.parse(window.location.search.replace('?', '')).e
+    if (!cipher) {
+      return {elements: {}, cipher: ''}
+    }
+    return {elements: {}, cipher: cipher}
   },
   handleClick: function () {
+    if (this.state.cipher) {
+      var keyNode = this.refs.key.getDOMNode()
+      var key = keyNode.value
+      keyNode.value = ''
+      Triplesec.decrypt({
+        data: new Triplesec.Buffer(this.state.cipher, 'hex'),
+        key: new Triplesec.Buffer(key)
+      }, function (err, buff) {
+        if (err) {
+          console.log(err)
+          return
+        }
+        this.setState({elements: JSON.parse(buff.toString())})
+      }.bind(this))
+      return
+    }
     var node = this.refs.file.getDOMNode()
     var file = node.files[0]
     if (typeof file === 'undefined') {
@@ -20,6 +42,15 @@ module.exports = React.createClass({
     }.bind(this)))
   },
   render: function () {
+    var keyInputClassName = 'hidden'
+    if (this.state.cipher !== '') {
+      keyInputClassName = 'u-full-width'
+    }
+    var graph = ''
+    if (typeof this.state.elements.nodes !== 'undefined') {
+      graph = <Graph elements={this.state.elements} />
+    }
+
     return (
       <div>
         <div className='navbar'>
@@ -39,16 +70,17 @@ module.exports = React.createClass({
               </div>
             </div>
           </div>
-          <div className='row file-upload'>
+          <div className='row'>
             <div className='twelve columns'>
               <div className='middle'>
+                <input type='text' ref='key' className={keyInputClassName} placeholder='Key to decrypt querystring'/><br />
                 <input type='file' ref='file' /><br />
-                <button className='button-primary' onClick={this.handleClick}>Generate Graph</button>
+                <button className='button-primary in-group' onClick={this.handleClick}>Generate Graph</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <Graph elements={this.state.elements} />
+        {graph}
       </div>
     )
   }
