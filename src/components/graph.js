@@ -32,7 +32,7 @@ module.exports = React.createClass({
             <a ref='download' className='button button-primary hidden' download='graph.png'>Download PNG</a>
           </div>
         </div>
-        <div ref='cy' className='cy'></div>
+        <div ref='cy' className='cy outline'></div>
       </div>
     )
   }
