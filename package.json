@@ -24,6 +24,8 @@
     "cytoscape": "^2.3.11",
     "domready": "^1.0.7",
     "filereader-stream": "^0.2.0",
+    "font-awesome": "^4.3.0",
+    "font-awesome-webpack": "0.0.3",
     "react": "^0.13.1"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "style-loader": "^0.10.1",
     "stylus": "^0.50.0",
     "stylus-loader": "^1.1.0",
+    "url-loader": "^0.5.5",
     "webpack": "^1.8.4",
     "webpack-dev-server": "^1.8.0"
   }

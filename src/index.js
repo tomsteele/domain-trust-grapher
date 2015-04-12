@@ -1,3 +1,4 @@
+require('font-awesome-webpack')
 require('./styles/vendor/normalize.css')
 require('./styles/vendor/skeleton.css')
 require('./styles/main.styl')
