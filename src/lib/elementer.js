@@ -4,8 +4,17 @@ module.exports = function (data) {
     edges: []
   }
 
-  for (var i = 0; i < (data.length - 1); i++) {
-    var parts = data[i].split(',')
+  // Check if we need to start at index 1 as the first line in the csv file
+  // could be the field types.
+  var s = 0
+  if (data.length < 1) {
+    return elements
+  }
+  if (data[0] === '"SourceDomain","TargetDomain","TrustType","TrustDirection"' || data[0] === 'SourceDomain,TargetDomain,TrustType,TrustDirection') {
+    s = 1
+  }
+  for (var i = s; i < (data.length - 1); i++) {
+    var parts = data[i].replace(/\"/g, '').split(',')
     if (parts.length < 4) {
       continue
     }
